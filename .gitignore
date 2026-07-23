@@ -1,0 +1,15 @@
+# PHP fajlovi (Cloudflare Pages ne podrzava PHP)
+*.php
+*.php~
+
+# Sistemski fajlovi
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor fajlovi
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
