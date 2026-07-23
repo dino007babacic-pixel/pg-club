@@ -1,0 +1,141 @@
+{
+    "site": {
+        "name": "PG Club",
+        "tagline": "Premium Klubske Proslave",
+        "location": "Podgorica, Crna Gora",
+        "description": "PG Club je novo premium mjesto za privatne klubske proslave u Podgorici.",
+        "email": "info@pgclub.me",
+        "phone": "+382 XX XXX XXX",
+        "address": "Rasko Trg"
+    },
+    "about": {
+        "title": "O Clubu",
+        "subtitle": "Dobrodošli u PG Club",
+        "text1": "PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smješten na Raskom Trgu.",
+        "text2": "Fokusirani smo na klubskе privatnе proslavе — rođendane, proslave firmi, momačke i djevojačke večeri, promocije i druge zabave.",
+        "capacity": "250",
+        "vip_boxes": "4",
+        "drinks": "50"
+    },
+    "opening": {
+        "date": "2026-09-15",
+        "label": "Grand Opening 15.09.2026"
+    },
+    "hours": {
+        "javni": "18:00 - 03:00",
+        "privatni": "18:00 - 02:00",
+        "jutarnji": "09:00 - 15:00"
+    },
+    "packages": [
+        {
+            "id": "party-squad",
+            "name": "Party Squad",
+            "price": 43,
+            "morning_price": 35,
+            "min_guests": 10,
+            "max_guests": 40,
+            "time": "18:00-02:00",
+            "description": "Mešovite grupe, više rezervacija istovremeno",
+            "includes": ["10-40 gostiju", "Mešovite grupe", "Obezbjeđenje", "DJ", "Neograničeno piće"],
+            "featured": true
+        },
+        {
+            "id": "classic-night",
+            "name": "Classic Night",
+            "price": 39,
+            "morning_price": 31,
+            "min_guests": 50,
+            "max_guests": 500,
+            "time": "18:00-02:00",
+            "description": "Privatna proslava",
+            "includes": ["Minimalno 50 gostiju", "Privatna proslava", "Obezbjeđenje", "DJ", "Neograničeno piće"],
+            "featured": false
+        },
+        {
+            "id": "grand-night",
+            "name": "Grand Night",
+            "price": 35,
+            "morning_price": 27,
+            "min_guests": 100,
+            "max_guests": 500,
+            "time": "18:00-02:00",
+            "description": "Premium paket sa pjevačem",
+            "includes": ["Minimalno 100 gostiju", "Privatna proslava", "Obezbjeđenje", "DJ", "Neograničeno piće", "Lokalni pjevač", "5L besplatne dobrodošlice"],
+            "featured": false
+        },
+        {
+            "id": "royal-night",
+            "name": "Royal Night",
+            "price": 33,
+            "morning_price": 25,
+            "min_guests": 150,
+            "max_guests": 200,
+            "time": "18:00-02:00",
+            "description": "Najveći paket",
+            "includes": ["150-200 gostiju", "Privatna proslava", "Obezbjeđenje", "DJ", "Neograničeno piće", "Lokalni pjevač", "5L besplatne dobrodošlice"],
+            "featured": false
+        }
+    ],
+    "events": [
+        {
+            "title": "Grand Opening",
+            "description": "Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenađenjima.",
+            "date": "15",
+            "month": "SEP",
+            "badge": "Grand Opening",
+            "time": "22:00 - 05:00",
+            "featured": true
+        },
+        {
+            "title": "Halloween Party",
+            "description": "Maskembal najvećeg formata. Pripremite svoje najkreativnije kostime.",
+            "date": "TBD",
+            "month": "OKT",
+            "badge": "Tema",
+            "time": "22:00 - 04:00",
+            "featured": false
+        },
+        {
+            "title": "New Year's Eve",
+            "description": "Najluđa noć u godini provedite u PG Club-u.",
+            "date": "31",
+            "month": "DEC",
+            "badge": "Specijalno",
+            "time": "21:00 - 06:00",
+            "featured": false
+        }
+    ],
+    "team": [
+        {
+            "name": "Marko Petrović",
+            "role": "Vlasnik",
+            "image": "pg_club_final_transparent.png"
+        },
+        {
+            "name": "Ana Nikolić",
+            "role": "Manager",
+            "image": "pg_club_final_transparent.png"
+        },
+        {
+            "name": "Nikola Vučković",
+            "role": "Head DJ",
+            "image": "pg_club_final_transparent.png"
+        },
+        {
+            "name": "Jelena Marković",
+            "role": "PR Menadžer",
+            "image": "pg_club_final_transparent.png"
+        }
+    ],
+    "gallery": [],
+    "social": {
+        "instagram": "#",
+        "facebook": "#",
+        "tiktok": "#",
+        "twitter": "#"
+    },
+    "hours": {
+        "petak": "22:00 - 04:00",
+        "subota": "22:00 - 05:00"
+    }
+}
