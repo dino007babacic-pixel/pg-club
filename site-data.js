@@ -57,8 +57,8 @@ function loadSiteContent(){
     
     var marqueeSpans=document.querySelectorAll('.marquee-content span');
     if(marqueeSpans.length>0){
-        marqueeSpans[0].textContent="\u2605 "+d.opening.label;
-        if(marqueeSpans[5])marqueeSpans[5].textContent="\u2605 "+d.opening.label;
+        marqueeSpans[0].textContent="â… "+d.opening.label;
+        if(marqueeSpans[5])marqueeSpans[5].textContent="â… "+d.opening.label;
     }
     
     var aboutSubtitle=document.querySelector('.about-subtitle');
@@ -74,16 +74,16 @@ function loadSiteContent(){
     if(statNumbers[2])statNumbers[2].setAttribute('data-count',d.about.drinks);
     
     var parallaxH2=document.querySelector('.parallax-content h2');
-    if(parallaxH2)parallaxH2.textContent='\u201CNo\u0107 Je Mlada\u201D';
+    if(parallaxH2)parallaxH2.textContent='"NoÄ‡ Je Mlada"';
     var parallaxP=document.querySelector('.parallax-content p');
-    if(parallaxP)parallaxP.textContent="Do\u017Eivite magiju "+d.site.name+"-a";
+    if(parallaxP)parallaxP.textContent="DoĹľivite magiju "+d.site.name+"-a";
     
     var eventsGrid=document.querySelector('.events-grid');
     if(eventsGrid){
         eventsGrid.innerHTML='';
         d.events.forEach(function(e,i){
             var featured=e.featured?'featured':'';
-            eventsGrid.innerHTML+='<div class="event-card '+featured+'" data-aos="fade-up" data-aos-delay="'+((i+1)*100)+'"><div class="event-content"><div class="event-date"><span class="day">'+e.date+'</span><span class="month">'+e.month+'</span></div><h3>'+e.title+'</h3><p>'+e.description+'</p><div class="event-meta"><span><i class="fas fa-clock"></i> '+e.time+'</span><span><i class="fas fa-map-marker-alt"></i> '+d.site.location+'</span></div><a href="#kontakt" class="btn btn-secondary btn-sm"><span>Vi\u0161e Informacija</span></a></div></div>';
+            eventsGrid.innerHTML+='<div class="event-card '+featured+'" data-aos="fade-up" data-aos-delay="'+((i+1)*100)+'"><div class="event-content"><div class="event-date"><span class="day">'+e.date+'</span><span class="month">'+e.month+'</span></div><h3>'+e.title+'</h3><p>'+e.description+'</p><div class="event-meta"><span><i class="fas fa-clock"></i> '+e.time+'</span><span><i class="fas fa-map-marker-alt"></i> '+d.site.location+'</span></div><a href="#kontakt" class="btn btn-secondary btn-sm"><span>ViĹˇe Informacija</span></a></div></div>';
         });
     }
     
@@ -114,10 +114,10 @@ function loadSiteContent(){
     });
     
     var footerBrand=document.querySelector('.footer-brand p');
-    if(footerBrand)footerBrand.textContent='Va\u0161e mjesto za vrhunski no\u010dni \u017eivot u Podgorici.';
+    if(footerBrand)footerBrand.textContent='VaĹˇe mjesto za vrhunski noÄ‡ni Ĺľivot u Podgorici.';
     
     var footerCopy=document.querySelector('.footer-bottom p');
-    if(footerCopy)footerCopy.innerHTML='&copy; 2026 '+d.site.name+'. Sva prava zadr\u017eana.';
+    if(footerCopy)footerCopy.innerHTML='&copy; 2026 '+d.site.name+'. Sva prava zadrĹľana.';
     
     var socialLinks=document.querySelectorAll('.contact-social .social-link');
     if(socialLinks[0])socialLinks[0].href=d.social.instagram;
