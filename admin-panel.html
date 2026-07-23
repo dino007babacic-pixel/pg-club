@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Club Admin - Uređivanje Sajta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #c9a227;
+            --primary-dark: #b8911f;
+            --accent: #8b1a1a;
+            --dark: #0a0a0a;
+            --card-bg: #121212;
+            --light: #ffffff;
+            --gray: #6b7280;
+            --gray-light: #9ca3af;
+            --border: rgba(201, 162, 39, 0.2);
+            --success: #10b981;
+            --error: #ef4444;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+            min-height: 100vh;
+            color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        .header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: var(--gray-light);
+        }
+        
+        .login-box {
+            max-width: 400px;
+            margin: 50px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 40px;
+        }
+        
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--gray-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .form-grid .full-width {
+            grid-column: span 2;
+        }
+        
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .list-item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .list-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .list-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--gray-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--success);
+            display: block;
+        }
+        
+        .alert.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--error);
+            display: block;
+        }
+        
+        .top-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .view-site-btn {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px solid var(--border);
+            color: var(--primary);
+        }
+        
+        .view-site-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid .full-width {
+                grid-column: span 1;
+            }
+            
+            .tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="pg_club_final_transparent.png" alt="PG Club">
+            <h1>Admin Panel</h1>
+            <p>Uredite Vašu web stranicu</p>
+        </div>
+        
+        <!-- Login -->
+        <div id="loginBox" class="login-box">
+            <h2><i class="fas fa-lock"></i> Prijava</h2>
+            <div class="form-group">
+                <label>Korisničko ime</label>
+                <input type="text" id="loginUser" placeholder="admin">
+            </div>
+            <div class="form-group">
+                <label>Lozinka</label>
+                <input type="password" id="loginPass" placeholder="pgclub2026">
+            </div>
+            <button class="btn btn-primary" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Prijavi se
+            </button>
+            <p style="text-align: center; margin-top: 20px; color: var(--gray-light); font-size: 0.85rem;">
+                Podaci: admin / pgclub2026
+            </p>
+        </div>
+        
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel">
+            <div id="alertBox" class="alert"></div>
+            
+            <div class="top-actions">
+                <div>
+                    <h2>Dobrodošli, Admin!</h2>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn btn-success" onclick="saveAll()">
+                        <i class="fas fa-save"></i> Sačuvaj sve
+                    </button>
+                    <a href="index.html" target="_blank" class="btn view-site-btn">
+                        <i class="fas fa-external-link-alt"></i> Pogledaj sajt
+                    </a>
+                    <button class="btn btn-danger btn-sm" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Odjavi se
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('general')">Opšte</button>
+                <button class="tab-btn" onclick="switchTab('about')">O nama</button>
+                <button class="tab-btn" onclick="switchTab('services')">Usluge</button>
+                <button class="tab-btn" onclick="switchTab('events')">Događaji</button>
+                <button class="tab-btn" onclick="switchTab('team')">Tim</button>
+                <button class="tab-btn" onclick="switchTab('gallery')">Galerija</button>
+                <button class="tab-btn" onclick="switchTab('contact')">Kontakt</button>
+            </div>
+            
+            <!-- General -->
+            <div id="tab-general" class="tab-content active">
+                <h3 class="section-title"><i class="fas fa-store"></i> Informacije o klubu</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Ime kluba</label>
+                        <input type="text" id="siteName" value="PG Club">
+                    </div>
+                    <div class="form-group">
+                        <label>Tagline</label>
+                        <input type="text" id="siteTagline" value="Premium Noćni Doživljaj">
+                    </div>
+                    <div class="form-group">
+                        <label>Lokacija</label>
+                        <input type="text" id="siteLocation" value="Podgorica, Crna Gora">
+                    </div>
+                    <div class="form-group">
+                        <label>Adresa</label>
+                        <input type="text" id="siteAddress" value="Rasko Trg">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Opis</label>
+                        <textarea id="siteDescription">PG Club je novo premium mjesto za noćni život u Podgorici.</textarea>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="margin-top: 30px;"><i class="fas fa-clock"></i> Radno vrijeme</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Petak</label>
+                        <input type="text" id="hoursPetak" value="22:00 - 04:00">
+                    </div>
+                    <div class="form-group">
+                        <label>Subota</label>
+                        <input type="text" id="hoursSubota" value="22:00 - 05:00">
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="margin-top: 30px;"><i class="fas fa-calendar"></i> Datum otvaranja</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Datum</label>
+                        <input type="date" id="openingDate" value="2026-09-15">
+                    </div>
+                    <div class="form-group">
+                        <label>Oznaka</label>
+                        <input type="text" id="openingLabel" value="Grand Opening 15.09.2026">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About -->
+            <div id="tab-about" class="tab-content">
+                <h3 class="section-title"><i class="fas fa-info-circle"></i> O nama</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Naslov sekcije</label>
+                        <input type="text" id="aboutTitle" value="O Clubu">
+                    </div>
+                    <div class="form-group">
+                        <label>Podnaslov</label>
+                        <input type="text" id="aboutSubtitle" value="Dobrodošli u PG Club">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Tekst 1</label>
+                        <textarea id="aboutText1">PG Club je novo premium mjesto za noćni život u Podgorici. Smješten u samom centru grada, nudimo jedinstveno iskustvo koje spaja eleganciju, zabavu i nezaboravne trenutke.</textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Tekst 2</label>
+                        <textarea id="aboutText2">Naš klub je idealno mjesto za privatne proslave, rođendane, proslave firmi i druge zabave.</textarea>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="margin-top: 30px;"><i class="fas fa-chart-bar"></i> Statistike</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Kapacitet</label>
+                        <input type="number" id="aboutCapacity" value="500">
+                    </div>
+                    <div class="form-group">
+                        <label>VIP Boksovi</label>
+                        <input type="number" id="aboutVipBoxes" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipova pića</label>
+                        <input type="number" id="aboutDrinks" value="50">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services -->
+            <div id="tab-services" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 class="section-title" style="margin-bottom: 0; border: none;"><i class="fas fa-concierge-bell"></i> Usluge</h3>
+                    <button class="btn btn-primary btn-sm" onclick="addService()">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </button>
+                </div>
+                <div id="servicesList"></div>
+            </div>
+            
+            <!-- Events -->
+            <div id="tab-events" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 class="section-title" style="margin-bottom: 0; border: none;"><i class="fas fa-calendar-alt"></i> Događaji</h3>
+                    <button class="btn btn-primary btn-sm" onclick="addEvent()">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </button>
+                </div>
+                <div id="eventsList"></div>
+            </div>
+            
+            <!-- Team -->
+            <div id="tab-team" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 class="section-title" style="margin-bottom: 0; border: none;"><i class="fas fa-users"></i> Tim</h3>
+                    <button class="btn btn-primary btn-sm" onclick="addMember()">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </button>
+                </div>
+                <div id="teamList"></div>
+            </div>
+            
+            <!-- Gallery -->
+            <div id="tab-gallery" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 class="section-title" style="margin-bottom: 0; border: none;"><i class="fas fa-images"></i> Galerija</h3>
+                    <button class="btn btn-primary btn-sm" onclick="addImage()">
+                        <i class="fas fa-plus"></i> Dodaj
+                    </button>
+                </div>
+                <div id="galleryList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;"></div>
+            </div>
+            
+            <!-- Contact -->
+            <div id="tab-contact" class="tab-content">
+                <h3 class="section-title"><i class="fas fa-envelope"></i> Kontakt</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="contactEmail" value="info@pgclub.me">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="text" id="contactPhone" value="+382 XX XXX XXX">
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="margin-top: 30px;"><i class="fas fa-share-alt"></i> Društvene mreže</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fab fa-instagram"></i> Instagram</label>
+                        <input type="url" id="socialInstagram" value="#">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-facebook"></i> Facebook</label>
+                        <input type="url" id="socialFacebook" value="#">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-tiktok"></i> TikTok</label>
+                        <input type="url" id="socialTiktok" value="#">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fab fa-twitter"></i> Twitter</label>
+                        <input type="url" id="socialTwitter" value="#">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Dodaj</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-sm" onclick="closeModal()">Otkaži</button>
+                <button class="btn btn-success btn-sm" onclick="saveModal()">Sačuvaj</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-app.js"></script>
+</body>
+</html>
