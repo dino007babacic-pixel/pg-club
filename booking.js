@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded',function(){
     var currentMonth=now.getMonth();
     var currentYear=now.getFullYear();
     var monthNames=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','Novembar','Decembar'];
-    var bookings=getBookings();
-    function getBookings(){try{return JSON.parse(localStorage.getItem('pgClubBookings'))||[]}catch(e){return[];}}
-    function saveBookings(){localStorage.setItem('pgClubBookings',JSON.stringify(bookings));}
+    var bookings=[];
+    var loaded=false;
+
     function renderCalendar(){
         calMonth.textContent=monthNames[currentMonth]+' '+currentYear;
         calDays.innerHTML='';
@@ -42,9 +42,23 @@ document.addEventListener('DOMContentLoaded',function(){
             calDays.appendChild(dayEl);
         }
     }
+
+    function loadBookings(){
+        return BookingsDB.getAll().then(function(data){
+            bookings=data;
+            loaded=true;
+            renderCalendar();
+        }).catch(function(e){
+            console.error('Firestore load failed, trying localStorage fallback:',e);
+            try{bookings=JSON.parse(localStorage.getItem('pgClubBookings'))||[]}catch(err){bookings=[];}
+            loaded=true;
+            renderCalendar();
+        });
+    }
+
     calPrev.addEventListener('click',function(){currentMonth--;if(currentMonth<0){currentMonth=11;currentYear--;}renderCalendar();});
     calNext.addEventListener('click',function(){currentMonth++;if(currentMonth>11){currentMonth=0;currentYear++;}renderCalendar();});
-    renderCalendar();
+    loadBookings();
 
     var packages={
         'party-squad':{name:'Party Squad',minGuests:10,maxGuests:40,price:43,morningPrice:35,minDaysAdvance:30},
@@ -98,13 +112,13 @@ document.addEventListener('DOMContentLoaded',function(){
                 var instantPrice=pkg.price+INSTANT_SURCHARGE;
                 var instantMorning=pkg.morningPrice+INSTANT_SURCHARGE;
                 if(pkgName)pkgName.textContent=pkg.name+' (Instant)';
-                if(pkgPrice)pkgPrice.textContent='\u20AC'+instantPrice+' / os (večernji) | \u20AC'+instantMorning+' / os (jutarnji)';
+                if(pkgPrice)pkgPrice.textContent='\u20AC'+instantPrice+' / os (veÄŤernji) | \u20AC'+instantMorning+' / os (jutarnji)';
                 if(instantBanner)instantBanner.style.display='block';
                 if(instantFormNote)instantFormNote.style.display='block';
                 if(submitBtn)submitBtn.style.display='none';
             }else{
                 if(pkgName)pkgName.textContent=pkg.name;
-                if(pkgPrice)pkgPrice.textContent='\u20AC'+pkg.price+' / os (večernji) | \u20AC'+pkg.morningPrice+' / os (jutarnji)';
+                if(pkgPrice)pkgPrice.textContent='\u20AC'+pkg.price+' / os (veÄŤernji) | \u20AC'+pkg.morningPrice+' / os (jutarnji)';
                 if(instantBanner)instantBanner.style.display='none';
                 if(instantFormNote)instantFormNote.style.display='none';
                 if(submitBtn)submitBtn.style.display='flex';
@@ -142,7 +156,7 @@ document.addEventListener('DOMContentLoaded',function(){
         bookingForm.addEventListener('submit',function(e){
             e.preventDefault();
             if(isInstantBooking){
-                alert('Instant rezervacija nije moguća preko sajta.\nMolimo pozovite nas: +382 XX XXX XXX');
+                alert('Instant rezervacija nije moguÄ‡a preko sajta.\nMolimo pozovite nas: +382 XX XXX XXX');
                 return;
             }
             var name=document.getElementById('bookingName').value.trim();
@@ -162,7 +176,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 alert('Molimo popunite sva polja.');return;
             }
             if(jmbg.length!==13||!/^\d{13}$/.test(jmbg)){
-                alert('JMBG mora imati tačno 13 cifara.');return;
+                alert('JMBG mora imati taÄŤno 13 cifara.');return;
             }
 
             var pkgData=packages[pkg];
@@ -181,20 +195,36 @@ document.addEventListener('DOMContentLoaded',function(){
             var totalPrice=(basePrice*parseInt(guests))+addonTotal;
             var advanceAmount=Math.round(totalPrice*0.5*100)/100;
 
-            bookings.push({
+            var bookingData={
                 name:fullName,jmbg:jmbg,phone:phone,email:email,eventType:eventType,
                 guests:guests,package:pkg,packageName:pkgData?pkgData.name:pkg,
                 date:date,time:timeSlot==='morning'?'09:00-15:00':'18:00-02:00',
                 timeSlot:timeSlot,addons:selectedAddons,basePricePerPerson:basePrice,
                 totalPrice:totalPrice,advanceAmount:advanceAmount,isInstant:false,
-                status:'cekanje',timestamp:new Date().toISOString()
+                status:'cekanje'
+            };
+
+            var submitButton=document.getElementById('bookingSubmitBtn');
+            if(submitButton)submitButton.disabled=true;
+
+            BookingsDB.add(bookingData).then(function(id){
+                if(id){
+                    bookingData.id=id;
+                    bookings.unshift(bookingData);
+                    closeModal('bookingModal');
+                    showBookingSuccess(fullName,date,timeSlot==='morning'?'09:00 - 15:00':'18:00 - 02:00',advanceAmount);
+                    renderCalendar();
+                    bookingForm.reset();
+                    updatePriceSummary();
+                }else{
+                    alert('GreĹˇka pri slanju rezervacije. Molimo pokuĹˇajte ponovo.');
+                }
+                if(submitButton)submitButton.disabled=false;
+            }).catch(function(e){
+                console.error('Firestore save failed:',e);
+                alert('GreĹˇka pri slanju rezervacije. Molimo pokuĹˇajte ponovo.');
+                if(submitButton)submitButton.disabled=false;
             });
-            saveBookings();
-            closeModal('bookingModal');
-            showBookingSuccess(fullName,date,timeSlot==='morning'?'09:00 - 15:00':'18:00 - 02:00',advanceAmount);
-            renderCalendar();
-            bookingForm.reset();
-            updatePriceSummary();
         });
     }
 
@@ -257,10 +287,10 @@ document.addEventListener('DOMContentLoaded',function(){
         var successModal=document.getElementById('successModal');
         if(successModal){
             var info=document.getElementById('successInfo');
-            if(info)info.innerHTML='<strong>'+name+'</strong><br>Datum: '+formatDate(date)+'<br>Termin: '+time+'<br><br><div class="success-advance"><i class="fas fa-info-circle"></i> Rezervacija je besplatna. Za potvrdu je potrebno uplatiti <strong>50% avansa</strong> (€'+advance+'). Uskoro \u0107emo vas kontaktirati telefonom radi obja\u0161njenja procedure uplate.</div><div class="success-rules"><i class="fas fa-ban"></i> Uno\u0161enje alkohola i hrane u klub je zabranjeno.</div>';
+            if(info)info.innerHTML='<strong>'+name+'</strong><br>Datum: '+formatDate(date)+'<br>Termin: '+time+'<br><br><div class="success-advance"><i class="fas fa-info-circle"></i> Rezervacija je besplatna. Za potvrdu je potrebno uplatiti <strong>50% avansa</strong> (â‚¬'+advance+'). Uskoro \u0107emo vas kontaktirati telefonom radi obja\u0161njenja procedure uplate.</div><div class="success-rules"><i class="fas fa-ban"></i> Uno\u0161enje alkohola i hrane u klub je zabranjeno.</div>';
             openModal('successModal');
         }else{
-            alert('Rezervacija uspje\u0161na!\n\nIme: '+name+'\nDatum: '+formatDate(date)+'\nTermin: '+time+'\nAvans: €'+advance+'\n\nUskoro \u0107emo vas kontaktirati.');
+            alert('Rezervacija uspje\u0161na!\n\nIme: '+name+'\nDatum: '+formatDate(date)+'\nTermin: '+time+'\nAvans: â‚¬'+advance+'\n\nUskoro \u0107emo vas kontaktirati.');
         }
     }
 
