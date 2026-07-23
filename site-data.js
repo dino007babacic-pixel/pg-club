@@ -2,17 +2,17 @@ const DEFAULT_DATA={
     site:{name:"PG Club",tagline:"Premium Klubske Proslave",location:"Podgorica, Crna Gora",address:"Rasko Trg",description:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici.",email:"info@pgclub.me",phone:"+382 XX XXX XXX"},
     opening:{date:"2026-09-15",label:"Grand Opening 15.09.2026"},
     hours:{javni:"18:00 - 03:00",privatni:"18:00 - 02:00",jutarnji:"09:00 - 15:00"},
-    about:{title:"O Clubu",subtitle:"Dobrodošli u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smješten na Raskom Trgu.",text2:"Fokusirani smo na klubskе privatnе proslavе — rođendane, proslave firmi, momačke i djevojačke večeri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
+    about:{title:"O Clubu",subtitle:"DobrodoĹˇli u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smjeĹˇten na Raskom Trgu.",text2:"Fokusirani smo na klubskĐµ privatnĐµ proslavĐµ â€” roÄ‘endane, proslave firmi, momaÄŤke i djevojaÄŤke veÄŤeri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
     packages:[
-        {id:"party-squad",name:"Party Squad",price:43,morningPrice:35,minGuests:10,maxGuests:40,time:"18:00-02:00",description:"Mešovite grupe, više rezervacija istovremeno",includes:["10-40 gostiju","Mešovite grupe","Obezbjeđenje","DJ","Neograničeno piće"],featured:true},
-        {id:"classic-night",name:"Classic Night",price:39,morningPrice:31,minGuests:50,maxGuests:500,time:"18:00-02:00",description:"Privatna proslava",includes:["Minimalno 50 gostiju","Privatna proslava","Obezbjeđenje","DJ","Neograničeno piće"],featured:false},
-        {id:"grand-night",name:"Grand Night",price:35,morningPrice:27,minGuests:100,maxGuests:500,time:"18:00-02:00",description:"Premium paket sa pjevačem",includes:["Minimalno 100 gostiju","Privatna proslava","Obezbjeđenje","DJ","Neograničeno piće","Lokalni pjevač","5L besplatne dobrodošlice"],featured:false},
-        {id:"royal-night",name:"Royal Night",price:33,morningPrice:25,minGuests:150,maxGuests:200,time:"18:00-02:00",description:"Najveći paket",includes:["150-200 gostiju","Privatna proslava","Obezbjeđenje","DJ","Neograničeno piće","Lokalni pjevač","5L besplatne dobrodošlice"],featured:false}
+        {id:"party-squad",name:"Party Squad",price:43,morningPrice:35,minGuests:10,maxGuests:40,time:"18:00-02:00",description:"MeĹˇovite grupe, viĹˇe rezervacija istovremeno",includes:["10-40 gostiju","MeĹˇovite grupe","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e"],featured:true},
+        {id:"classic-night",name:"Classic Night",price:39,morningPrice:31,minGuests:50,maxGuests:500,time:"18:00-02:00",description:"Privatna proslava",includes:["Minimalno 50 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e"],featured:false},
+        {id:"grand-night",name:"Grand Night",price:35,morningPrice:27,minGuests:100,maxGuests:500,time:"18:00-02:00",description:"Premium paket sa pjevaÄŤem",includes:["Minimalno 100 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e","Lokalni pjevaÄŤ","5L besplatne dobrodoĹˇlice"],featured:false},
+        {id:"royal-night",name:"Royal Night",price:33,morningPrice:25,minGuests:150,maxGuests:200,time:"18:00-02:00",description:"NajveÄ‡i paket",includes:["150-200 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e","Lokalni pjevaÄŤ","5L besplatne dobrodoĹˇlice"],featured:false}
     ],
     events:[
-        {title:"Grand Opening",description:"Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenađenjima.",date:"15",month:"SEP",badge:"Grand Opening",time:"22:00 - 05:00",featured:true},
-        {title:"Halloween Party",description:"Maskembal najvećeg formata. Pripremite svoje najkreativnije kostime.",date:"TBD",month:"OKT",badge:"Tema",time:"22:00 - 04:00",featured:false},
-        {title:"New Year's Eve",description:"Najluđa noć u godini provedite u PG Club-u.",date:"31",month:"DEC",badge:"Specijalno",time:"21:00 - 06:00",featured:false}
+        {title:"Grand Opening",description:"Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenaÄ‘enjima.",date:"15",month:"SEP",badge:"Grand Opening",time:"22:00 - 05:00",featured:true},
+        {title:"Halloween Party",description:"Maskembal najveÄ‡eg formata. Pripremite svoje najkreativnije kostime.",date:"TBD",month:"OKT",badge:"Tema",time:"22:00 - 04:00",featured:false},
+        {title:"New Year's Eve",description:"NajluÄ‘a noÄ‡ u godini provedite u PG Club-u.",date:"31",month:"DEC",badge:"Specijalno",time:"21:00 - 06:00",featured:false}
     ],
     gallery:[],
     social:{instagram:"#",facebook:"#",tiktok:"#",twitter:"#"}
@@ -20,6 +20,17 @@ const DEFAULT_DATA={
 
 function getSiteData(){
     return JSON.parse(localStorage.getItem('pgClubData'))||JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+async function loadSiteDataFromCloud(){
+    if(typeof SiteDB==='undefined')return;
+    try{
+        var remote=await SiteDB.get();
+        if(remote){
+            localStorage.setItem('pgClubData',JSON.stringify(remote));
+            loadSiteContent();
+        }
+    }catch(e){console.log('Cloud load skipped:',e);}
 }
 
 function setVal(el,value){
@@ -85,7 +96,7 @@ function loadSiteContent(){
                 galleryGrid.innerHTML+='<div class="gallery-item '+large+'" data-category="'+g.category+'"><img src="'+g.url+'" alt="'+g.title+'"><div class="gallery-overlay"><i class="fas fa-expand"></i><span>'+g.title+'</span></div></div>';
             });
         }else{
-            galleryGrid.innerHTML='<p style="text-align:center;color:#888;grid-column:1/-1;padding:40px 0;">Galerija uskoro - pratite naše društvene mreže</p>';
+            galleryGrid.innerHTML='<p style="text-align:center;color:#888;grid-column:1/-1;padding:40px 0;">Galerija uskoro - pratite naĹˇe druĹˇtvene mreĹľe</p>';
         }
     }
     
@@ -123,4 +134,5 @@ function loadSiteContent(){
 
 document.addEventListener('DOMContentLoaded',function(){
     loadSiteContent();
+    loadSiteDataFromCloud();
 });
