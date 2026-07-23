@@ -2,17 +2,17 @@ const DEFAULT_DATA={
     site:{name:"PG Club",tagline:"Premium Klubske Proslave",location:"Podgorica, Crna Gora",address:"Rasko Trg",description:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici.",email:"info@pgclub.me",phone:"+382 XX XXX XXX"},
     opening:{date:"2026-09-15",label:"Grand Opening 15.09.2026"},
     hours:{javni:"18:00 - 03:00",privatni:"18:00 - 02:00",jutarnji:"09:00 - 15:00"},
-    about:{title:"O Clubu",subtitle:"DobrodoĹˇli u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smjeĹˇten na Raskom Trgu.",text2:"Fokusirani smo na klubskĐµ privatnĐµ proslavĐµ â€” roÄ‘endane, proslave firmi, momaÄŤke i djevojaÄŤke veÄŤeri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
+    about:{title:"O Clubu",subtitle:"Dobrodo\u0161li u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smje\u0161ten na Raskom Trgu.",text2:"Fokusirani smo na klubskе privatnе proslavе — ro\u0111endane, proslave firmi, moma\u010Dke i djevoja\u010Dke ve\u010Deri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
     packages:[
-        {id:"party-squad",name:"Party Squad",price:43,morningPrice:35,minGuests:10,maxGuests:40,time:"18:00-02:00",description:"MeĹˇovite grupe, viĹˇe rezervacija istovremeno",includes:["10-40 gostiju","MeĹˇovite grupe","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e"],featured:true},
-        {id:"classic-night",name:"Classic Night",price:39,morningPrice:31,minGuests:50,maxGuests:500,time:"18:00-02:00",description:"Privatna proslava",includes:["Minimalno 50 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e"],featured:false},
-        {id:"grand-night",name:"Grand Night",price:35,morningPrice:27,minGuests:100,maxGuests:500,time:"18:00-02:00",description:"Premium paket sa pjevaÄŤem",includes:["Minimalno 100 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e","Lokalni pjevaÄŤ","5L besplatne dobrodoĹˇlice"],featured:false},
-        {id:"royal-night",name:"Royal Night",price:33,morningPrice:25,minGuests:150,maxGuests:200,time:"18:00-02:00",description:"NajveÄ‡i paket",includes:["150-200 gostiju","Privatna proslava","ObezbjeÄ‘enje","DJ","NeograniÄŤeno piÄ‡e","Lokalni pjevaÄŤ","5L besplatne dobrodoĹˇlice"],featured:false}
+        {id:"party-squad",name:"Party Squad",price:43,morningPrice:35,minGuests:10,maxGuests:40,time:"18:00-02:00",description:"Me\u0161ovite grupe, vi\u0161e rezervacija istovremeno",includes:["10-40 gostiju","Me\u0161ovite grupe","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e"],featured:true},
+        {id:"classic-night",name:"Classic Night",price:39,morningPrice:31,minGuests:50,maxGuests:500,time:"18:00-02:00",description:"Privatna proslava",includes:["Minimalno 50 gostiju","Privatna proslava","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e"],featured:false},
+        {id:"grand-night",name:"Grand Night",price:35,morningPrice:27,minGuests:100,maxGuests:500,time:"18:00-02:00",description:"Premium paket sa pjeva\u010Dem",includes:["Minimalno 100 gostiju","Privatna proslava","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e","Lokalni pjeva\u010D","5L besplatne dobrodo\u0161lice"],featured:false},
+        {id:"royal-night",name:"Royal Night",price:33,morningPrice:25,minGuests:150,maxGuests:200,time:"18:00-02:00",description:"Najve\u0107i paket",includes:["150-200 gostiju","Privatna proslava","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e","Lokalni pjeva\u010D","5L besplatne dobrodo\u0161lice"],featured:false}
     ],
     events:[
-        {title:"Grand Opening",description:"Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenaÄ‘enjima.",date:"15",month:"SEP",badge:"Grand Opening",time:"22:00 - 05:00",featured:true},
-        {title:"Halloween Party",description:"Maskembal najveÄ‡eg formata. Pripremite svoje najkreativnije kostime.",date:"TBD",month:"OKT",badge:"Tema",time:"22:00 - 04:00",featured:false},
-        {title:"New Year's Eve",description:"NajluÄ‘a noÄ‡ u godini provedite u PG Club-u.",date:"31",month:"DEC",badge:"Specijalno",time:"21:00 - 06:00",featured:false}
+        {title:"Grand Opening",description:"Spektakularno otvaranje PG Club-a sa posebnim gostima i iznena\u0111enjima.",date:"15",month:"SEP",badge:"Grand Opening",time:"22:00 - 05:00",featured:true},
+        {title:"Halloween Party",description:"Maskembal najve\u0107eg formata. Pripremite svoje najkreativnije kostime.",date:"TBD",month:"OKT",badge:"Tema",time:"22:00 - 04:00",featured:false},
+        {title:"New Year's Eve",description:"Najlu\u0111a no\u0107 u godini provedite u PG Club-u.",date:"31",month:"DEC",badge:"Specijalno",time:"21:00 - 06:00",featured:false}
     ],
     gallery:[],
     social:{instagram:"#",facebook:"#",tiktok:"#",twitter:"#"}
@@ -57,8 +57,8 @@ function loadSiteContent(){
     
     var marqueeSpans=document.querySelectorAll('.marquee-content span');
     if(marqueeSpans.length>0){
-        marqueeSpans[0].textContent="â… "+d.opening.label;
-        if(marqueeSpans[5])marqueeSpans[5].textContent="â… "+d.opening.label;
+        marqueeSpans[0].textContent="★ "+d.opening.label;
+        if(marqueeSpans[5])marqueeSpans[5].textContent="★ "+d.opening.label;
     }
     
     var aboutSubtitle=document.querySelector('.about-subtitle');
@@ -74,16 +74,16 @@ function loadSiteContent(){
     if(statNumbers[2])statNumbers[2].setAttribute('data-count',d.about.drinks);
     
     var parallaxH2=document.querySelector('.parallax-content h2');
-    if(parallaxH2)parallaxH2.textContent='"NoÄ‡ Je Mlada"';
+    if(parallaxH2)parallaxH2.textContent='"No\u0107 Je Mlada"';
     var parallaxP=document.querySelector('.parallax-content p');
-    if(parallaxP)parallaxP.textContent="DoĹľivite magiju "+d.site.name+"-a";
+    if(parallaxP)parallaxP.textContent="Do\u017Eivite magiju "+d.site.name+"-a";
     
     var eventsGrid=document.querySelector('.events-grid');
     if(eventsGrid){
         eventsGrid.innerHTML='';
         d.events.forEach(function(e,i){
             var featured=e.featured?'featured':'';
-            eventsGrid.innerHTML+='<div class="event-card '+featured+'" data-aos="fade-up" data-aos-delay="'+((i+1)*100)+'"><div class="event-content"><div class="event-date"><span class="day">'+e.date+'</span><span class="month">'+e.month+'</span></div><h3>'+e.title+'</h3><p>'+e.description+'</p><div class="event-meta"><span><i class="fas fa-clock"></i> '+e.time+'</span><span><i class="fas fa-map-marker-alt"></i> '+d.site.location+'</span></div><a href="#kontakt" class="btn btn-secondary btn-sm"><span>ViĹˇe Informacija</span></a></div></div>';
+            eventsGrid.innerHTML+='<div class="event-card '+featured+'" data-aos="fade-up" data-aos-delay="'+((i+1)*100)+'"><div class="event-content"><div class="event-date"><span class="day">'+e.date+'</span><span class="month">'+e.month+'</span></div><h3>'+e.title+'</h3><p>'+e.description+'</p><div class="event-meta"><span><i class="fas fa-clock"></i> '+e.time+'</span><span><i class="fas fa-map-marker-alt"></i> '+d.site.location+'</span></div><a href="#kontakt" class="btn btn-secondary btn-sm"><span>Vi\u0161e Informacija</span></a></div></div>';
         });
     }
     
@@ -96,7 +96,7 @@ function loadSiteContent(){
                 galleryGrid.innerHTML+='<div class="gallery-item '+large+'" data-category="'+g.category+'"><img src="'+g.url+'" alt="'+g.title+'"><div class="gallery-overlay"><i class="fas fa-expand"></i><span>'+g.title+'</span></div></div>';
             });
         }else{
-            galleryGrid.innerHTML='<p style="text-align:center;color:#888;grid-column:1/-1;padding:40px 0;">Galerija uskoro - pratite naĹˇe druĹˇtvene mreĹľe</p>';
+            galleryGrid.innerHTML='<p style="text-align:center;color:#888;grid-column:1/-1;padding:40px 0;">Galerija uskoro - pratite na\u0161e dru\u0161tvene mre\u017Ee</p>';
         }
     }
     
@@ -114,10 +114,10 @@ function loadSiteContent(){
     });
     
     var footerBrand=document.querySelector('.footer-brand p');
-    if(footerBrand)footerBrand.textContent='VaĹˇe mjesto za vrhunski noÄ‡ni Ĺľivot u Podgorici.';
+    if(footerBrand)footerBrand.textContent='Va\u0161e mjesto za vrhunski no\u0107ni \u017Eivot u Podgorici.';
     
     var footerCopy=document.querySelector('.footer-bottom p');
-    if(footerCopy)footerCopy.innerHTML='&copy; 2026 '+d.site.name+'. Sva prava zadrĹľana.';
+    if(footerCopy)footerCopy.innerHTML='&copy; 2026 '+d.site.name+'. Sva prava zadr\u017Eana.';
     
     var socialLinks=document.querySelectorAll('.contact-social .social-link');
     if(socialLinks[0])socialLinks[0].href=d.social.instagram;
