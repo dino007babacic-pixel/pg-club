@@ -292,11 +292,11 @@ if (contactForm) {
         const btn = contactForm.querySelector('button');
         const originalText = btn.innerHTML;
         
-        btn.innerHTML = '<span>Šalje se...</span>';
+        btn.innerHTML = '<span>\u0160alje se...</span>';
         btn.disabled = true;
         
         setTimeout(() => {
-            alert('Hvala Vam na upitu! Odgovorićemo Vam u najkraćem roku.');
+            alert('Hvala Vam na upitu! Odgovori\u0107emo Vam u najkra\u0107em roku.');
             contactForm.reset();
             btn.innerHTML = originalText;
             btn.disabled = false;
@@ -318,7 +318,7 @@ if (newsletterForm) {
         btn.disabled = true;
         
         setTimeout(() => {
-            alert('Hvala na prijavi! Primaćete naše novosti.');
+            alert('Hvala na prijavi! Prima\u0107ete na\u0161e novosti.');
             newsletterForm.reset();
             btn.innerHTML = originalText;
             btn.disabled = false;
@@ -442,7 +442,7 @@ const playBtn = document.querySelector('.play-btn');
 if (playBtn) {
     playBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('Video player će biti uskoro dostupan!');
+        alert('Video player \u0107e biti uskoro dostupan!');
     });
 }
 
