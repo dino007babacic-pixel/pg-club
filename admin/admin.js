@@ -2,10 +2,10 @@
 const defaultSiteData = {
     site: {
         name: 'PG Club',
-        tagline: 'Premium NoÄ‡ni DoĹľivljaj',
+        tagline: 'Premium Noćni Doživljaj',
         location: 'Podgorica, Crna Gora',
         address: 'Rasko Trg',
-        description: 'PG Club je novo premium mjesto za noÄ‡ni Ĺľivot u Podgorici.',
+        description: 'PG Club je novo premium mjesto za noćni život u Podgorici.',
         email: 'info@pgclub.me',
         phone: '+382 XX XXX XXX'
     },
@@ -19,28 +19,28 @@ const defaultSiteData = {
     },
     about: {
         title: 'O Clubu',
-        subtitle: 'DobrodoĹˇli u PG Club',
-        text1: 'PG Club je novo premium mjesto za noÄ‡ni Ĺľivot u Podgorici. SmjeĹˇten u samom centru grada, nudimo jedinstveno iskustvo koje spaja eleganciju, zabavu i nezaboravne trenutke.',
-        text2: 'NaĹˇ klub je idealno mjesto za privatne proslave, roÄ‘endane, proslave firmi i druge zabave. TakoÄ‘e organizujemo velike party dogaÄ‘aje nekoliko puta godiĹˇnje sa najboljim izvoÄ‘aÄŤima iz regiona.',
+        subtitle: 'Dobrodošli u PG Club',
+        text1: 'PG Club je novo premium mjesto za noćni život u Podgorici. Smješten u samom centru grada, nudimo jedinstveno iskustvo koje spaja eleganciju, zabavu i nezaboravne trenutke.',
+        text2: 'Naš klub je idealno mjesto za privatne proslave, rođendane, proslave firmi i druge zabave. Takođe organizujemo velike party događaje nekoliko puta godišnje sa najboljim izvođačima iz regiona.',
         capacity: '250',
         vipBoxes: '4',
         drinks: '50'
     },
     services: [
-        { icon: 'fa-glass-cheers', title: 'Privatne Proslave', description: 'RoÄ‘endani, godiĹˇnjice, vjenÄŤanja i drugi posebni trenuci. Osigurajte privatnost i luksuz za VaĹˇe najdraĹľe.', featured: false },
-        { icon: 'fa-music', title: 'Veliki Partyji', description: 'Nekoliko puta godiĹˇnje organizujemo velike dogaÄ‘aje sa nastupima poznatih pjevaÄŤa i influensera iz regiona.', featured: true },
-        { icon: 'fa-crown', title: 'VIP Usluga', description: '4 ekskluzivna separea spremna za rezervaciju. Premium atmosfera i personalizovana usluga za naĹˇe najistaknutije goste.', featured: false }
+        { icon: 'fa-glass-cheers', title: 'Privatne Proslave', description: 'Rođendani, godišnjice, vjenčanja i drugi posebni trenuci. Osigurajte privatnost i luksuz za Vaše najdraže.', featured: false },
+        { icon: 'fa-music', title: 'Veliki Partyji', description: 'Nekoliko puta godišnje organizujemo velike događaje sa nastupima poznatih pjevača i influensera iz regiona.', featured: true },
+        { icon: 'fa-crown', title: 'VIP Usluga', description: '4 ekskluzivna separea spremna za rezervaciju. Premium atmosfera i personalizovana usluga za naše najistaknutije goste.', featured: false }
     ],
     events: [
-        { title: 'Grand Opening', description: 'Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenaÄ‘enjima.', date: '15', month: 'SEP', badge: 'Grand Opening', time: '22:00 - 05:00', featured: true },
-        { title: 'Halloween Party', description: 'Maskembal najveÄ‡eg formata. Pripremite svoje najkreativnije kostime.', date: 'TBD', month: 'OKT', badge: 'Tema', time: '22:00 - 04:00', featured: false },
-        { title: "New Year's Eve", description: "NajluÄ‘a noÄ‡ u godini provedite u PG Club-u. OÄŤekujte vrhunski provod.", date: '31', month: 'DEC', badge: 'Specijalno', time: '21:00 - 06:00', featured: false }
+        { title: 'Grand Opening', description: 'Spektakularno otvaranje PG Club-a sa posebnim gostima i iznenađenjima.', date: '15', month: 'SEP', badge: 'Grand Opening', time: '22:00 - 05:00', featured: true },
+        { title: 'Halloween Party', description: 'Maskembal najvećeg formata. Pripremite svoje najkreativnije kostime.', date: 'TBD', month: 'OKT', badge: 'Tema', time: '22:00 - 04:00', featured: false },
+        { title: "New Year's Eve", description: "Najluđa noć u godini provedite u PG Club-u. Očekujte vrhunski provod.", date: '31', month: 'DEC', badge: 'Specijalno', time: '21:00 - 06:00', featured: false }
     ],
     team: [
-        { name: 'Marko PetroviÄ‡', role: 'Vlasnik', image: 'pg_club_final_transparent.png' },
-        { name: 'Ana NikoliÄ‡', role: 'Manager', image: 'pg_club_final_transparent.png' },
-        { name: 'Nikola VuÄŤkoviÄ‡', role: 'Head DJ', image: 'pg_club_final_transparent.png' },
-        { name: 'Jelena MarkoviÄ‡', role: 'PR MenadĹľer', image: 'pg_club_final_transparent.png' }
+        { name: 'Marko Petrović', role: 'Vlasnik', image: 'pg_club_final_transparent.png' },
+        { name: 'Ana Nikolić', role: 'Manager', image: 'pg_club_final_transparent.png' },
+        { name: 'Nikola Vučković', role: 'Head DJ', image: 'pg_club_final_transparent.png' },
+        { name: 'Jelena Marković', role: 'PR Menadžer', image: 'pg_club_final_transparent.png' }
     ],
     gallery: [],
     social: {
@@ -76,7 +76,7 @@ async function loadSiteData() {
         if (remote) {
             siteData = remote;
         } else {
-            // First time â€” save defaults to Firestore
+            // First time — save defaults to Firestore
             await SiteDB.save(defaultSiteData);
             siteData = JSON.parse(JSON.stringify(defaultSiteData));
         }
@@ -103,7 +103,7 @@ function handleLogin(e) {
         sessionStorage.setItem('pgClubAdmin', 'true');
         showAdminPanel();
     } else {
-        alert('PogreĹˇno korisniÄŤko ime ili lozinka!');
+        alert('Pogrešno korisničko ime ili lozinka!');
     }
     return false;
 }
@@ -176,10 +176,10 @@ async function saveAllData() {
     
     try {
         await SiteDB.save(siteData);
-        showAlert('UspjeĹˇno saÄŤuvane promjene! (Cloud + lokalna kopija)', 'success');
+        showAlert('Uspješno sačuvane promjene! (Cloud + lokalna kopija)', 'success');
     } catch (e) {
         console.error('Firestore save failed:', e);
-        showAlert('SaÄŤuvano lokalno (cloud greĹˇka â€” pokuĹˇajte ponovo kasnije)', 'success');
+        showAlert('Sačuvano lokalno (cloud greška — pokušajte ponovo kasnije)', 'success');
     }
 }
 
@@ -251,10 +251,10 @@ function openServiceModal(index = null) {
 
 // Delete service
 function deleteService(index) {
-    if (confirm('Da li ste sigurni da Ĺľelite obrisati ovu uslugu?')) {
+    if (confirm('Da li ste sigurni da želite obrisati ovu uslugu?')) {
         siteData.services.splice(index, 1);
         renderServices();
-        showAlert('Usluga uspjeĹˇno obrisana!', 'success');
+        showAlert('Usluga uspješno obrisana!', 'success');
     }
 }
 
@@ -291,7 +291,7 @@ function openEventModal(index = null) {
     modalIndex = index;
     modalMode = index !== null ? 'edit' : 'add';
     
-    document.getElementById('modalTitle').textContent = index !== null ? 'Uredi dogaÄ‘aj' : 'Dodaj dogaÄ‘aj';
+    document.getElementById('modalTitle').textContent = index !== null ? 'Uredi događaj' : 'Dodaj događaj';
     
     const event = index !== null ? siteData.events[index] : { title: '', description: '', date: '', month: 'SEP', badge: '', time: '' };
     const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAJ', 'JUN', 'JUL', 'AVG', 'SEP', 'OKT', 'NOV', 'DEC'];
@@ -299,7 +299,7 @@ function openEventModal(index = null) {
     document.getElementById('modalBody').innerHTML = `
         <div class="form-group">
             <label>Naslov</label>
-            <input type="text" id="modalEventTitle" value="${event.title}" placeholder="Naziv dogaÄ‘aja">
+            <input type="text" id="modalEventTitle" value="${event.title}" placeholder="Naziv događaja">
         </div>
         <div class="form-group">
             <label>Opis</label>
@@ -334,10 +334,10 @@ function openEventModal(index = null) {
 
 // Delete event
 function deleteEvent(index) {
-    if (confirm('Da li ste sigurni da Ĺľelite obrisati ovaj dogaÄ‘aj?')) {
+    if (confirm('Da li ste sigurni da želite obrisati ovaj događaj?')) {
         siteData.events.splice(index, 1);
         renderEvents();
-        showAlert('DogaÄ‘aj uspjeĹˇno obrisan!', 'success');
+        showAlert('Događaj uspješno obrisan!', 'success');
     }
 }
 
@@ -373,7 +373,7 @@ function openTeamModal(index = null) {
     modalIndex = index;
     modalMode = index !== null ? 'edit' : 'add';
     
-    document.getElementById('modalTitle').textContent = index !== null ? 'Uredi ÄŤlana' : 'Dodaj ÄŤlana';
+    document.getElementById('modalTitle').textContent = index !== null ? 'Uredi člana' : 'Dodaj člana';
     
     const member = index !== null ? siteData.team[index] : { name: '', role: '', image: 'pg_club_final_transparent.png' };
     
@@ -397,10 +397,10 @@ function openTeamModal(index = null) {
 
 // Delete team member
 function deleteTeamMember(index) {
-    if (confirm('Da li ste sigurni da Ĺľelite obrisati ovog ÄŤlana?')) {
+    if (confirm('Da li ste sigurni da želite obrisati ovog člana?')) {
         siteData.team.splice(index, 1);
         renderTeam();
-        showAlert('ÄŚlan tima uspjeĹˇno obrisan!', 'success');
+        showAlert('Član tima uspješno obrisan!', 'success');
     }
 }
 
@@ -467,10 +467,10 @@ function openGalleryModal() {
 
 // Delete gallery image
 function deleteGalleryImage(index) {
-    if (confirm('Da li ste sigurni da Ĺľelite obrisati ovu sliku?')) {
+    if (confirm('Da li ste sigurni da želite obrisati ovu sliku?')) {
         siteData.gallery.splice(index, 1);
         renderGallery();
-        showAlert('Slika uspjeĹˇno obrisana!', 'success');
+        showAlert('Slika uspješno obrisana!', 'success');
     }
 }
 
@@ -538,7 +538,7 @@ function saveModalData() {
     localStorage.setItem('pgClubData', JSON.stringify(siteData));
     SiteDB.save(siteData).catch(e => console.error('Firestore save error:', e));
     closeModal();
-    showAlert('UspjeĹˇno saÄŤuvano!', 'success');
+    showAlert('Uspješno sačuvano!', 'success');
 }
 
 // Close modal
@@ -559,7 +559,7 @@ async function renderBookings() {
     const container = document.getElementById('bookingsList');
     if (!container) return;
     
-    container.innerHTML = '<p style="text-align:center;color:var(--gold);padding:40px 0;"><i class="fas fa-spinner fa-spin"></i> UÄŤitavanje rezervacija...</p>';
+    container.innerHTML = '<p style="text-align:center;color:var(--gold);padding:40px 0;"><i class="fas fa-spinner fa-spin"></i> Učitavanje rezervacija...</p>';
     
     let bookings;
     try {
@@ -575,8 +575,8 @@ async function renderBookings() {
     }
     
     const statusColors = {
-        'cekanje': { bg: 'rgba(201,162,39,0.15)', border: 'rgba(201,162,39,0.4)', color: '#c9a227', label: 'Na ÄŤekanju' },
-        'potvrdjena': { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.4)', color: '#10b981', label: 'PotvrÄ‘ena' },
+        'cekanje': { bg: 'rgba(201,162,39,0.15)', border: 'rgba(201,162,39,0.4)', color: '#c9a227', label: 'Na čekanju' },
+        'potvrdjena': { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.4)', color: '#10b981', label: 'Potvrđena' },
         'odbita': { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.4)', color: '#ef4444', label: 'Odbijena' }
     };
     
@@ -584,10 +584,10 @@ async function renderBookings() {
         const s = statusColors[b.status] || statusColors['cekanje'];
         
         const addonsList = (b.addons && b.addons.length > 0)
-            ? b.addons.map(a => a.name + ' (+' + a.pricePerPerson + 'â‚¬/os)').join(', ')
+            ? b.addons.map(a => a.name + ' (+' + a.pricePerPerson + '€/os)').join(', ')
             : 'Bez dodataka';
         
-        const timeLabel = b.timeSlot === 'morning' ? '09:00 - 15:00 (jutarnji)' : '18:00 - 02:00 (veÄŤernji)';
+        const timeLabel = b.timeSlot === 'morning' ? '09:00 - 15:00 (jutarnji)' : '18:00 - 02:00 (večernji)';
         
         return '<div class="list-item" style="flex-direction:column;align-items:flex-start;gap:15px;">' +
             '<div style="display:flex;justify-content:space-between;width:100%;align-items:flex-start;">' +
@@ -611,8 +611,8 @@ async function renderBookings() {
                 '<div><span style="color:var(--gray-light);">Email:</span> <strong>' + b.email + '</strong></div>' +
                 '<div><span style="color:var(--gray-light);">Vrsta:</span> <strong>' + b.eventType + '</strong></div>' +
                 '<div><span style="color:var(--gray-light);">JMBG:</span> <strong>' + b.jmbg + '</strong></div>' +
-                '<div><span style="color:var(--gray-light);">Ukupno:</span> <strong style="color:var(--gold);">â‚¬' + b.totalPrice + '</strong></div>' +
-                '<div><span style="color:var(--gray-light);">Avans (50%):</span> <strong style="color:var(--gold);">â‚¬' + b.advanceAmount + '</strong></div>' +
+                '<div><span style="color:var(--gray-light);">Ukupno:</span> <strong style="color:var(--gold);">€' + b.totalPrice + '</strong></div>' +
+                '<div><span style="color:var(--gray-light);">Avans (50%):</span> <strong style="color:var(--gold);">€' + b.advanceAmount + '</strong></div>' +
                 '<div style="grid-column:1/-1;"><span style="color:var(--gray-light);">Dodaci:</span> <strong>' + addonsList + '</strong></div>' +
             '</div>' +
         '</div>';
@@ -622,11 +622,11 @@ async function renderBookings() {
 // Change booking status in Firestore
 async function changeBookingStatus(id, newStatus) {
     const statusLabel = newStatus === 'potvrdjena' ? 'potvrditi' : 'odbiti';
-    if (!confirm('Da li ste sigurni da Ĺľelite ' + statusLabel + ' ovu rezervaciju?')) return;
+    if (!confirm('Da li ste sigurni da želite ' + statusLabel + ' ovu rezervaciju?')) return;
     
     try {
         await BookingsDB.updateStatus(id, newStatus);
-        showAlert('Rezervacija uspjeĹˇno ' + (newStatus === 'potvrdjena' ? 'potvrÄ‘ena' : 'odbaÄŤena') + '!', 'success');
+        showAlert('Rezervacija uspješno ' + (newStatus === 'potvrdjena' ? 'potvrđena' : 'odbačena') + '!', 'success');
     } catch (e) {
         console.error('Firestore update failed:', e);
         // Fallback: update local storage
@@ -638,7 +638,7 @@ async function changeBookingStatus(id, newStatus) {
                 localStorage.setItem('pgClubBookings', JSON.stringify(bookings));
             }
         } catch (err) {}
-        showAlert('AĹľurirano lokalno (cloud greĹˇka)', 'success');
+        showAlert('Ažurirano lokalno (cloud greška)', 'success');
     }
     renderBookings();
 }
