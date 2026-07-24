@@ -2,7 +2,7 @@ const DEFAULT_DATA={
     site:{name:"PG Club",tagline:"Premium Klubske Proslave",location:"Podgorica, Crna Gora",address:"Rasko Trg",description:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici.",email:"info@pgclub.me",phone:"+382 XX XXX XXX"},
     opening:{date:"2026-09-15",label:"Grand Opening 15.09.2026"},
     hours:{javni:"18:00 - 03:00",privatni:"18:00 - 02:00",jutarnji:"09:00 - 15:00"},
-    about:{title:"O Clubu",subtitle:"Dobrodo\u0161li u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smje\u0161ten na Raskom Trgu.",text2:"Fokusirani smo na klubske privatne proslave — ro\u0111endane, proslave firmi, moma\u010Dke i djevoja\u010Dke ve\u010Deri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
+    about:{title:"O Clubu",subtitle:"Dobrodo\u0161li u PG Club",text1:"PG Club je novo premium mjesto za privatne klubske proslave u Podgorici, smje\u0161ten na Raskom Trgu.",text2:"Fokusirani smo na klubske privatne proslave \u2014 ro\u0111endane, proslave firmi, moma\u010Dke i djevoja\u010Dke ve\u010Deri, promocije i druge zabave.",capacity:"250",vipBoxes:"4",drinks:"50"},
     packages:[
         {id:"party-squad",name:"Party Squad",price:43,morningPrice:35,minGuests:10,maxGuests:40,time:"18:00-02:00",description:"Me\u0161ovite grupe, vi\u0161e rezervacija istovremeno",includes:["10-40 gostiju","Me\u0161ovite grupe","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e"],featured:true},
         {id:"classic-night",name:"Classic Night",price:39,morningPrice:31,minGuests:50,maxGuests:500,time:"18:00-02:00",description:"Privatna proslava",includes:["Minimalno 50 gostiju","Privatna proslava","Obezbje\u0111enje","DJ","Neograni\u010Deno pi\u0107e"],featured:false},
@@ -57,8 +57,8 @@ function loadSiteContent(){
     
     var marqueeSpans=document.querySelectorAll('.marquee-content span');
     if(marqueeSpans.length>0){
-        marqueeSpans[0].textContent="★ "+d.opening.label;
-        if(marqueeSpans[5])marqueeSpans[5].textContent="★ "+d.opening.label;
+        marqueeSpans[0].textContent="\u2605 "+d.opening.label;
+        if(marqueeSpans[5])marqueeSpans[5].textContent="\u2605 "+d.opening.label;
     }
     
     var aboutSubtitle=document.querySelector('.about-subtitle');
